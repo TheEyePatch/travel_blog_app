@@ -1,0 +1,14 @@
+.travel_list{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 1rem;
+  row-gap: .5rem;
+  padding: 1rem;
+}
+
+.btn{
+  align-self: center;
+  justify-self: center;
+  width: min-content;
+  height: min-content;
+}
