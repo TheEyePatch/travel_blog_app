@@ -1,3 +1,4 @@
+import { useHistory } from 'react-router';
 import classes from '../styles/NewTravelBlogForm.module.css'
 import Card from '../Card';
 import { useRef } from 'react';
@@ -6,7 +7,7 @@ import { useRef } from 'react';
 function NewTravelBlogForm(){
   const titleInputRef = useRef();
   const descriptionInputRef = useRef();
-  
+  const history = useHistory();
   const submitHandler = (event)=>{
     event.preventDefault();
     let title_value = titleInputRef.current.value;
@@ -14,10 +15,25 @@ function NewTravelBlogForm(){
 
     let object_input = {
       title: title_value,
-      description_value
+      description: description_value
     };
 
-    console.log(object_input)
+    async function postBlog(){
+      const post_blog = await fetch('http://localhost:3000/blogs',
+      {
+        method: 'POST',
+        body: JSON.stringify(object_input),
+        headers:{
+          'Content-Type': 'application/json'
+        }
+      });
+      return post_blog;
+    }
+    postBlog().then(
+      () =>{
+        history.replace('/')
+      }
+    )
   }
 
   return <Card>
