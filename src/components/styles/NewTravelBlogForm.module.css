@@ -26,3 +26,10 @@
   border: 2px solid rgba(46, 46, 46, 0.938);
   border-radius: 1rem;
 }
+.btn:hover{
+  cursor: pointer;
+}
+.btn:active{
+  background-color: rgb(41, 41, 41);
+  color: white;
+}
