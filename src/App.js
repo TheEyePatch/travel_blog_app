@@ -3,6 +3,7 @@ import './App.css';
 import NewTravelBlog from './pages/NewTravelBlog';
 import TravelBlogs from './pages/TravelBlogs';
 import MainNavigation from './components/layout/MainNavigation';
+import SignIn from './pages/SignIn';
 
 function App() {
   return (
@@ -14,6 +15,9 @@ function App() {
         </Route>
         <Route path='/travel_blogs/new' exact>
           <NewTravelBlog/>
+        </Route>
+        <Route path='/sign_in' exact>
+          <SignIn/>
         </Route>
       </Switch>
       
