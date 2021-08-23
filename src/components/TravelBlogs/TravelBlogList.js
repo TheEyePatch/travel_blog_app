@@ -1,18 +1,29 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import TravelBlogItem from './TravelBlogItem'
 import classes from '../styles/TravelBlogList.module.css'
+import AuthContext from '../../contexts/auth-context';
 
 function TravelBlogList(){
   const [isLoading, setLoading] = useState(true);
   const [allBlogs, setAllBlogs] = useState([]);
+  const authContext = useContext(AuthContext)
 
   useEffect(() =>{
-    fetch('http://localhost:3000/blogs')
+    fetch('http://localhost:3001/blogs',{
+      method: 'GET',
+      headers:{
+        'Content-Type': 'application/json',
+        'AUTH-TOKEN': authContext.token
+      }
+    }
+    )
     .then(response =>{
       return response.json();
     }).then(data =>{
       setLoading(false);
       setAllBlogs(data);
+    }).catch(err =>{
+      console.log(err)
     })
   }, [])
 
