@@ -19,7 +19,7 @@ function NewTravelBlogForm(){
     };
 
     async function postBlog(){
-      const post_blog = await fetch('http://localhost:3000/blogs',
+      const post_blog = await fetch('http://localhost:3001/blogs',
       {
         method: 'POST',
         body: JSON.stringify(object_input),
@@ -29,7 +29,9 @@ function NewTravelBlogForm(){
       });
       return post_blog;
     }
-    postBlog().then(
+    postBlog().then(data =>{
+      console.log(data)
+    }).then(
       () =>{
         history.replace('/')
       }
