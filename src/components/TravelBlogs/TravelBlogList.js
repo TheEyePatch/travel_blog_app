@@ -1,19 +1,15 @@
-import React, { useState, useEffect, useContext } from 'react';
+import { useState, useEffect } from 'react';
 import TravelBlogItem from './TravelBlogItem'
 import classes from '../styles/TravelBlogList.module.css'
-import AuthContext from '../../contexts/auth-context';
 
 function TravelBlogList(){
   const [isLoading, setLoading] = useState(true);
   const [allBlogs, setAllBlogs] = useState([]);
-  const authContext = useContext(AuthContext)
-
   useEffect(() =>{
     fetch('http://localhost:3001/blogs',{
       method: 'GET',
       headers:{
-        'Content-Type': 'application/json',
-        'AUTH-TOKEN': authContext.token
+        'Content-Type': 'application/json'
       }
     }
     )
@@ -37,7 +33,7 @@ function TravelBlogList(){
   return <div className={classes.travel_list}>
     {
       allBlogs.map(blog =>{
-        return <TravelBlogItem className={classes.blog_item} key={blog.id} title={blog.title} description = {blog.description} />
+        return <TravelBlogItem className={classes.blog_item} key={blog.id} object = {blog} />
       })
     }
     {/* <button className={classes.btn} onClick={addHandler}>Add blog</button>
