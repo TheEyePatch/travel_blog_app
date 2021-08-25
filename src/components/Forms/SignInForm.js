@@ -1,10 +1,12 @@
 import { useRef, useContext } from "react"
+import { useHistory } from "react-router";
 import AuthContext from "../../contexts/auth-context";
 
 function SignInForm(){
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
-  const authContext = useContext(AuthContext)
+  const authContext = useContext(AuthContext);
+  const history = useHistory();
 
   const submitHandler = (event) =>{
     event.preventDefault();
@@ -16,7 +18,7 @@ function SignInForm(){
     fetch('http://localhost:3001/users/users/sign_in',{
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({
         sign_in: {
@@ -28,7 +30,17 @@ function SignInForm(){
     }
     ).then(data =>{
       return data.json()
-    }).then(data => authContext.login(data.data.user.authentication_token) )
+    }).then(data => {
+      if(data.data.user){
+        authContext.login(data.data.user.authentication_token)
+        history.replace('/')
+      }else{
+        alert(data.messages)
+      }
+    }
+      
+        
+      )
   }
 
   return(
