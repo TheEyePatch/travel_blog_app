@@ -7,7 +7,7 @@ function TravelBlogItem(props){
     <div>
       <Card>
         <div className={props.className}>
-          <h1>{blog.title}</h1>
+          <Link to={`/travel_blogs/${blog.id}`}><h1>{blog.title}</h1></Link>
           <p>{blog.description}</p>
         </div>
       </Card>
