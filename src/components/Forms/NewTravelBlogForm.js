@@ -24,7 +24,8 @@ function NewTravelBlogForm(){
         method: 'POST',
         body: JSON.stringify(object_input),
         headers:{
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'Authorization': sessionStorage.getItem('auth_token')
         }
       });
       return post_blog;
