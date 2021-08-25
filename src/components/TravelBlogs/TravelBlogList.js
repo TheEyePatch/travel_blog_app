@@ -23,7 +23,7 @@ function TravelBlogList(){
     })
   }, [])
 
-  if(isLoading == true){
+  if(isLoading === true){
     return(<section>
       <p>Loading...</p>
     </section>
