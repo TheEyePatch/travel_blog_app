@@ -37,10 +37,7 @@ function SignInForm(){
       }else{
         alert(data.messages)
       }
-    }
-      
-        
-      )
+    })
   }
 
   return(
