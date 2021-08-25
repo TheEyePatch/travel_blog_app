@@ -14,22 +14,27 @@ export const AuthContextProvider = (props) =>{
 
   const logInHandler = (token) =>{
     setToken(token)
+    sessionStorage.setItem('auth_token', token)
     setUserLoggedIn(true)
+    console.log(userLoggedIn)
   };
   
-  const logOutHander = () =>{
+  const logOutHander = (event) =>{
+    event.preventDefault();
     fetch('http://localhost:3001/users/users/sign_out',
       {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
-          'AUTH-TOKEN': token
+          'Authorization': sessionStorage.getItem('auth_token', token)
         }
       }
-    ).then(data => data.json()).then(
-        data =>{
-          console.log(data)
-        }
+    ).then(data => data.json()
+    ).then(
+      data =>{
+        console.log(data)
+        setUserLoggedIn(false)
+      }
     )
   };
 
