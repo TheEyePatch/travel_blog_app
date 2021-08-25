@@ -9,14 +9,13 @@ const AuthContext = React.createContext({
 });
 
 export const AuthContextProvider = (props) =>{
-  const [token, setToken] = useState(null);
-  const [userLoggedIn, setUserLoggedIn] = useState(false)
-
+  const [token, setToken] = useState(sessionStorage.getItem('auth_token'));
+  const userLoggedIn = !!token;
+  
+  
   const logInHandler = (token) =>{
     setToken(token)
     sessionStorage.setItem('auth_token', token)
-    setUserLoggedIn(true)
-    console.log(userLoggedIn)
   };
   
   const logOutHander = (event) =>{
@@ -33,7 +32,9 @@ export const AuthContextProvider = (props) =>{
     ).then(
       data =>{
         console.log(data)
-        setUserLoggedIn(false)
+        sessionStorage.removeItem('auth_token')
+        setToken(sessionStorage.getItem('auth_token'))
+               
       }
     )
   };
