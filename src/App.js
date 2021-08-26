@@ -28,15 +28,9 @@ function App() {
           </Route>
           )
         }
-
-        {
-          userLoggedIn && (
-            <Route path= {`/travel_blogs/:id`}>
-              <TravelBlog/>
-            </Route>
-          )
-        }
-        
+        <Route path= {`/travel_blogs/:id`}>
+          <TravelBlog/>
+        </Route>        
         { !userLoggedIn && 
           <Route path='/sign_in' exact>
             <SignIn/>
