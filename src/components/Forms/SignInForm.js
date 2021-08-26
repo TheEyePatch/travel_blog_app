@@ -1,8 +1,9 @@
 import { useRef, useContext } from "react"
 import { useHistory } from "react-router";
+import Card from "../Card";
 import AuthContext from "../../contexts/auth-context";
 
-function SignInForm(){
+function SignInForm(props){
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
   const authContext = useContext(AuthContext);
@@ -41,7 +42,7 @@ function SignInForm(){
   }
 
   return(
-    <div>
+    <Card>
       <h1>User Log In</h1>
       <form onSubmit={submitHandler}>
         <div>
@@ -54,8 +55,9 @@ function SignInForm(){
         </div>
         <button>Sign In</button>
       </form>
-    </div>
-    
+      <a onClick={props.onSet} >Create Account</a> 
+    </Card>
+      
   )
 }
 
