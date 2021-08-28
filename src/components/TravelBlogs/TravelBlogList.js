@@ -5,6 +5,8 @@ import classes from '../styles/TravelBlogList.module.css'
 function TravelBlogList(){
   const [isLoading, setLoading] = useState(true);
   const [allBlogs, setAllBlogs] = useState([]);
+
+  // GET the Travel Blogs
   useEffect(() =>{
     fetch('http://localhost:3001/blogs',{
       method: 'GET',
@@ -36,8 +38,6 @@ function TravelBlogList(){
         return <TravelBlogItem className={classes.blog_item} key={blog.id} object = {blog} />
       })
     }
-    {/* <button className={classes.btn} onClick={addHandler}>Add blog</button>
-    <button className={classes.btn} onClick={minusHandler}>Minus blog</button> */}
   </div>
 }
 
